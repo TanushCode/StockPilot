@@ -1,0 +1,16 @@
+[Unit]
+Description=StockPilot SQS/SNS Background Worker Daemon
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/stockpilot/backend
+Environment="PATH=/home/ubuntu/stockpilot/backend/venv/bin"
+EnvironmentFile=/home/ubuntu/stockpilot/backend/.env
+ExecStart=/home/ubuntu/stockpilot/backend/venv/bin/python worker.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

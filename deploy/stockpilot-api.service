@@ -1,0 +1,16 @@
+[Unit]
+Description=StockPilot Flask WSGI API Service (Gunicorn)
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/stockpilot/backend
+Environment="PATH=/home/ubuntu/stockpilot/backend/venv/bin"
+EnvironmentFile=/home/ubuntu/stockpilot/backend/.env
+ExecStart=/home/ubuntu/stockpilot/backend/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 run:app
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
